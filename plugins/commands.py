@@ -538,8 +538,8 @@ async def start(client, message):
                 reply_markup=InlineKeyboardMarkup(button)
             )
             filetype = msg.media
-            file = getattr(msg, filetype.value)
-            title = file.caption 
+            file = getattr(msg, filetype.value) 
+            title = ' '.join(filter(lambda x: not x.startswith('@'), file.caption.split()))
             size=get_size(file.file_size)
             f_caption = f"<code>{title}</code>"
             if CUSTOM_FILE_CAPTION:
@@ -563,7 +563,7 @@ async def start(client, message):
             pass
         return await message.reply('No such file exist.')
     files = files_[0]
-    title = files.caption
+    title = ' '.join(filter(lambda x: not x.startswith('@'), file.caption.split()))
     size=get_size(files.file_size)
     f_caption=files.caption
     if CUSTOM_FILE_CAPTION:
