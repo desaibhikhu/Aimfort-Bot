@@ -539,7 +539,7 @@ async def start(client, message):
             )
             filetype = msg.media
             file = getattr(msg, filetype.value) 
-            title = f"**{' '.join(filter(lambda x: not x.startswith('@'), file.caption.split()))}**"
+            title = ' '.join(filter(lambda x: not x.startswith('@'), file.caption.split()))
             size=get_size(file.file_size)
             f_caption = f"<code>{title}</code>"
             if CUSTOM_FILE_CAPTION:
@@ -563,7 +563,7 @@ async def start(client, message):
             pass
         return await message.reply('No such file exist.')
     files = files_[0]
-    title = f"**{' '.join(filter(lambda x: not x.startswith('@'), file.caption.split()))}**"
+    title = ' '.join(filter(lambda x: not x.startswith('@'), file.caption.split()))
     size=get_size(files.file_size)
     f_caption=files.caption
     if CUSTOM_FILE_CAPTION:
