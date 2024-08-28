@@ -25,12 +25,12 @@ async def start(client, message):
     await message.react(emoji="🔥")
     if message.chat.type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
         buttons = [[
-            InlineKeyboardButton('⤬ Aᴅᴅ Mᴇ Tᴏ Yᴏᴜʀ Gʀᴏᴜᴘ ⤬', url=f')
+            InlineKeyboardButton('⤬ Aᴅᴅ Mᴇ Tᴏ Yᴏᴜʀ Gʀᴏᴜᴘ ⤬', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
         ],[
-            InlineKeyboardButton('✪ Sᴜᴘᴘᴏʀᴛ Gʀᴏᴜᴘ', url="https://t.me/moviefileuplod"),
+            InlineKeyboardButton('✪ Sᴜᴘᴘᴏʀᴛ Gʀᴏᴜᴘ', url="https://t.me/vj_bot_disscussion"),
             InlineKeyboardButton('⌬ Mᴏᴠɪᴇ Gʀᴏᴜᴘ', url='https://t.me/+DNAqhKkpTf0zYTI1')
         ],[
-            InlineKeyboardButton('✇ Jᴏɪɴ Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ ✇', url="https://t.me/TG_viewsboster_service")
+            InlineKeyboardButton('✇ Jᴏɪɴ Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ ✇', url='https://t.me/TG_viewsboster_service')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await message.reply(script.START_TXT.format(message.from_user.mention if message.from_user else message.chat.title, temp.U_NAME, temp.B_NAME), reply_markup=reply_markup, disable_web_page_preview=True)
@@ -44,17 +44,9 @@ async def start(client, message):
         await db.add_user(message.from_user.id, message.from_user.first_name)
         await client.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(message.from_user.id, message.from_user.mention))
     if len(message.command) != 2:
-        if PREMIUM_AND_REFERAL_MODE == False:
+        if PREMIUM_AND_REFERAL_MODE == True:
             buttons = [[
                 InlineKeyboardButton('⤬ Aᴅᴅ Mᴇ Tᴏ Yᴏᴜʀ Gʀᴏᴜᴘ ⤬', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
-            ],[
-                InlineKeyboardButton('Eᴀʀɴ Mᴏɴᴇʏ 💸', callback_data="shortlink_info"),
-                InlineKeyboardButton('⌬ Mᴏᴠɪᴇ Gʀᴏᴜᴘ', url=GRP_LNK)
-            ],[
-                InlineKeyboardButton('〄 Hᴇʟᴘ', callback_data='help'),
-                InlineKeyboardButton('⍟ Aʙᴏᴜᴛ', callback_data='about')
-            ],[
-                InlineKeyboardButton('💳 Gᴇᴛ Fʀᴇᴇ Oʀ Pᴀɪᴅ Sᴜʙsᴄʀɪᴘᴛɪᴏɴ 💳', callback_data='subscription')
             ],[
                 InlineKeyboardButton('✇ Jᴏɪɴ Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ ✇', url=CHNL_LNK)
             ]]
@@ -126,7 +118,7 @@ async def start(client, message):
             )
         return
     if len(message.command) == 2 and message.command[1] in ["subscribe", "error", "okay", "help"]:
-        if PREMIUM_AND_REFERAL_MODE == False:
+        if PREMIUM_AND_REFERAL_MODE == True:
             buttons = [[
                 InlineKeyboardButton('⤬ Aᴅᴅ Mᴇ Tᴏ Yᴏᴜʀ Gʀᴏᴜᴘ ⤬', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
             ],[
@@ -152,7 +144,7 @@ async def start(client, message):
             ],[
                 InlineKeyboardButton('✇ Jᴏɪɴ Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ ✇', url=CHNL_LNK)
             ]]
-        if CLONE_MODE == False:
+        if CLONE_MODE == True:
             buttons.append([InlineKeyboardButton('🤖 Cʀᴇᴀᴛᴇ Yᴏᴜʀ Oᴡɴ Cʟᴏɴᴇ Bᴏᴛ 🤖', callback_data='clone')])
         reply_markup = InlineKeyboardMarkup(buttons)      
         await message.reply_photo(
@@ -181,7 +173,7 @@ async def start(client, message):
                     await client.send_message(chat_id = user_id, text = "<b>You Have Successfully Completed Total Referal.\n\nYou Added In Premium For {}</b>".format(REFERAL_PREMEIUM_TIME))
                     return 
         else:
-            if PREMIUM_AND_REFERAL_MODE == False:
+            if PREMIUM_AND_REFERAL_MODE == True:
                 buttons = [[
                     InlineKeyboardButton('⤬ Aᴅᴅ Mᴇ Tᴏ Yᴏᴜʀ Gʀᴏᴜᴘ ⤬', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
                 ],[
@@ -207,7 +199,7 @@ async def start(client, message):
                 ],[
                     InlineKeyboardButton('✇ Jᴏɪɴ Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ ✇', url=CHNL_LNK)
                 ]]
-            if CLONE_MODE == False:
+            if CLONE_MODE == True:
                 buttons.append([InlineKeyboardButton('🤖 Cʀᴇᴀᴛᴇ Yᴏᴜʀ Oᴡɴ Cʟᴏɴᴇ Bᴏᴛ 🤖', callback_data='clone')])
             reply_markup = InlineKeyboardMarkup(buttons)
             m=await message.reply_sticker("CAACAgUAAxkBAAEKVaxlCWGs1Ri6ti45xliLiUeweCnu4AACBAADwSQxMYnlHW4Ls8gQMAQ") 
@@ -279,7 +271,7 @@ async def start(client, message):
                         InlineKeyboardButton('Sᴜᴘᴘᴏʀᴛ Gʀᴏᴜᴘ', url=f'https://t.me/{SUPPORT_CHAT}'),
                         InlineKeyboardButton('Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ', url=CHNL_LNK)
                     ],[
-                        InlineKeyboardButton('𝗕𝗢𝗧 𝗢𝗪𝗡𝗘𝗥', url="https://t.me/botmaster135")
+                        InlineKeyboardButton('𝗕𝗢𝗧 𝗢𝗪𝗡𝗘𝗥', url="https://t.me/Botmaster135")
                     ],[
                         InlineKeyboardButton("🚀 Fast Download 🚀", url=download),  # we download Link
                         InlineKeyboardButton('🖥️ Watch online 🖥️', url=stream)
@@ -291,13 +283,13 @@ async def start(client, message):
                         InlineKeyboardButton('Sᴜᴘᴘᴏʀᴛ Gʀᴏᴜᴘ', url=f'https://t.me/{SUPPORT_CHAT}'),
                         InlineKeyboardButton('Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ', url=CHNL_LNK)
                     ],[
-                        InlineKeyboardButton('𝗕𝗢𝗧 𝗢𝗪𝗡𝗘𝗥', url="https://t.me/motmaster135")
+                        InlineKeyboardButton('𝗕𝗢𝗧 𝗢𝗪𝗡𝗘𝗥', url="https://t.me/Botmaster135")
                     ]]
                 msg = await client.send_cached_media(
                     chat_id=message.from_user.id,
                     file_id=msg.get("file_id"),
                     caption=f_caption,
-                    protect_content=msg.get('protect', True),
+                    protect_content=msg.get('protect', False),
                     reply_markup=InlineKeyboardMarkup(button)
                 )
                 filesarr.append(msg)
@@ -309,7 +301,7 @@ async def start(client, message):
                     chat_id=message.from_user.id,
                     file_id=msg.get("file_id"),
                     caption=f_caption,
-                    protect_content=msg.get('protect', True),
+                    protect_content=msg.get('protect', False),
                     reply_markup=InlineKeyboardMarkup(button)
                 )
                 filesarr.append(msg)
@@ -467,7 +459,7 @@ async def start(client, message):
                     ]]
                     await message.reply_text(
                         text="<b>You are not verified !\nKindly verify to continue !</b>",
-                        protect_content=False,
+                        protect_content=True,
                         reply_markup=InlineKeyboardMarkup(btn)
                     )
                     return
@@ -476,7 +468,7 @@ async def start(client, message):
                     InlineKeyboardButton('Sᴜᴘᴘᴏʀᴛ Gʀᴏᴜᴘ', url=f'https://t.me/{SUPPORT_CHAT}'),
                     InlineKeyboardButton('Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ', url=CHNL_LNK)
                 ],[
-                    InlineKeyboardButton("𝗕𝗢𝗧 𝗢𝗪𝗡𝗘𝗥", url="https://t.me/Arpitbotmovies")
+                    InlineKeyboardButton("𝗕𝗢𝗧 𝗢𝗪𝗡𝗘𝗥", url="https://t.me/Botmaster135")
                 ],[
                     InlineKeyboardButton('🚀 Fast Download / Watch Online🖥️', callback_data=f'generate_stream_link:{file_id}') #Don't change anything without contacting me @KingVJ01
                 ]]
@@ -485,7 +477,7 @@ async def start(client, message):
                     InlineKeyboardButton('Sᴜᴘᴘᴏʀᴛ Gʀᴏᴜᴘ', url=f'https://t.me/{SUPPORT_CHAT}'),
                     InlineKeyboardButton('Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ', url=CHNL_LNK)
                 ],[
-                    InlineKeyboardButton("𝗕𝗢𝗧 𝗢𝗪𝗡𝗘𝗥", url="https://t.me/Arpitbotmovies")
+                    InlineKeyboardButton("𝗕𝗢𝗧 𝗢𝗪𝗡𝗘𝗥", url="https://t.me/Botmaster135")
                 ]]
             msg = await client.send_cached_media(
                 chat_id=message.from_user.id,
@@ -549,7 +541,7 @@ async def start(client, message):
                     InlineKeyboardButton('Sᴜᴘᴘᴏʀᴛ Gʀᴏᴜᴘ', url=f'https://t.me/{SUPPORT_CHAT}'),
                     InlineKeyboardButton('Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ', url=CHNL_LNK)
                 ],[
-                    InlineKeyboardButton("𝗕𝗢𝗧 𝗢𝗪𝗡𝗘𝗥", url="https://t.me/Arpitbotmovies")
+                    InlineKeyboardButton("𝗕𝗢𝗧 𝗢𝗪𝗡𝗘𝗥", url="https://t.me/Botmaster135")
                 ],[
                     InlineKeyboardButton('🚀 Fast Download / Watch Online🖥️', callback_data=f'generate_stream_link:{file_id}') #Don't change anything without contacting me @KingVJ01
                 ]]
@@ -558,7 +550,7 @@ async def start(client, message):
                     InlineKeyboardButton('Sᴜᴘᴘᴏʀᴛ Gʀᴏᴜᴘ', url=f'https://t.me/{SUPPORT_CHAT}'),
                     InlineKeyboardButton('Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ', url=CHNL_LNK)
                 ],[
-                    InlineKeyboardButton("𝗕𝗢𝗧 𝗢𝗪𝗡𝗘𝗥", url="https://t.me/Arpitbotmovies")
+                    InlineKeyboardButton("𝗕𝗢𝗧 𝗢𝗪𝗡𝗘𝗥", url="https://t.me/Botmaster135")
                 ]]
             msg = await client.send_cached_media(
                 chat_id=message.from_user.id,
@@ -568,7 +560,7 @@ async def start(client, message):
             )
             filetype = msg.media
             file = getattr(msg, filetype.value)
-            title = '@Arpitbotmovies  ' + ' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@'), file.file_name.split()))
+            title = '@Botmaster135  ' + ' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@'), file.file_name.split()))
             size=get_size(file.file_size)
             f_caption = f"<code>{title}</code>"
             if CUSTOM_FILE_CAPTION:
@@ -592,7 +584,7 @@ async def start(client, message):
             pass
         return await message.reply('No such file exist.')
     files = files_[0]
-    title = '@Arpitbotmovies  ' + ' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@'), files.file_name.split()))
+    title = '@Botmaster135  ' + ' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@'), files.file_name.split()))
     size=get_size(files.file_size)
     f_caption=files.caption
     if CUSTOM_FILE_CAPTION:
@@ -602,7 +594,7 @@ async def start(client, message):
             logger.exception(e)
             f_caption=f_caption
     if f_caption is None:
-        f_caption = f"@Arpitbotmovies  {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@'), files.file_name.split()))}"
+        f_caption = f"@Botmaster135  {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@'), files.file_name.split()))}"
     if not await db.has_premium_access(message.from_user.id):
         if not await check_verification(client, message.from_user.id) and VERIFY == True:
             btn = [[
@@ -621,7 +613,7 @@ async def start(client, message):
             InlineKeyboardButton('Sᴜᴘᴘᴏʀᴛ Gʀᴏᴜᴘ', url=f'https://t.me/{SUPPORT_CHAT}'),
             InlineKeyboardButton('Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ', url=CHNL_LNK)
         ],[
-            InlineKeyboardButton("𝗕𝗢𝗧 𝗢𝗪𝗡𝗘𝗥", url="https://t.me/Arpitbotmovies")
+            InlineKeyboardButton("𝗕𝗢𝗧 𝗢𝗪𝗡𝗘𝗥", url="https://t.me/Botmaster135")
         ],[
             InlineKeyboardButton('🚀 Fast Download / Watch Online🖥️', callback_data=f'generate_stream_link:{file_id}') #Don't change anything without contacting me @KingVJ01
         ]]
@@ -630,7 +622,7 @@ async def start(client, message):
             InlineKeyboardButton('Sᴜᴘᴘᴏʀᴛ Gʀᴏᴜᴘ', url=f'https://t.me/{SUPPORT_CHAT}'),
             InlineKeyboardButton('Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ', url=CHNL_LNK)
         ],[
-            InlineKeyboardButton("𝗕𝗢𝗧 𝗢𝗪𝗡𝗘𝗥", url="https://t.me/Arpitbotmovies")
+            InlineKeyboardButton("𝗕𝗢𝗧 𝗢𝗪𝗡𝗘𝗥", url="https://t.me/Botmaster135")
         ]]
     msg = await client.send_cached_media(
         chat_id=message.from_user.id,
@@ -1211,7 +1203,7 @@ async def deletemultiplefiles(bot, message):
 
 @Client.on_message(filters.command("shortlink"))
 async def shortlink(bot, message):
-    if SHORTLINK_MODE == True:
+    if SHORTLINK_MODE == False:
         return 
     userid = message.from_user.id if message.from_user else None
     if not userid:
@@ -1245,7 +1237,7 @@ async def shortlink(bot, message):
     
 @Client.on_message(filters.command("setshortlinkoff"))
 async def offshortlink(bot, message):
-    if SHORTLINK_MODE == True:
+    if SHORTLINK_MODE == False:
         return 
     chat_type = message.chat.type
     if chat_type == enums.ChatType.PRIVATE:
@@ -1255,13 +1247,13 @@ async def offshortlink(bot, message):
         title = message.chat.title
     else:
         return
-    await save_group_settings(grpid, 'is_shortlink', True)
+    await save_group_settings(grpid, 'is_shortlink', False)
     # ENABLE_SHORTLINK = False
     return await message.reply_text("Successfully disabled shortlink")
     
 @Client.on_message(filters.command("setshortlinkon"))
 async def onshortlink(bot, message):
-    if SHORTLINK_MODE == True:
+    if SHORTLINK_MODE == False:
         return 
     chat_type = message.chat.type
     if chat_type == enums.ChatType.PRIVATE:
@@ -1347,7 +1339,7 @@ async def settutorial(bot, message):
 
 @Client.on_message(filters.command("remove_tutorial"))
 async def removetutorial(bot, message):
-    if SHORTLINK_MODE == True:
+    if SHORTLINK_MODE == False:
         return 
     userid = message.from_user.id if message.from_user else None
     if not userid:
@@ -1496,7 +1488,7 @@ async def plans_cmd_handler(client, message):
     if PREMIUM_AND_REFERAL_MODE == False:
         return 
     btn = [            
-        [InlineKeyboardButton("ꜱᴇɴᴅ ᴘᴀʏᴍᴇɴᴛ ʀᴇᴄᴇɪᴘᴛ 🧾", url=f"https://t.me/{OWNER_USERNAME}")],
+        [InlineKeyboardButton("ꜱᴇɴᴅ ᴘᴀʏᴍᴇɴᴛ ʀᴇᴄᴇɪᴘᴛ 🧾", url=f"https://t.me/Botmaster135")],
         [InlineKeyboardButton("⚠️ ᴄʟᴏsᴇ / ᴅᴇʟᴇᴛᴇ ⚠️", callback_data="close_data")]
     ]
     reply_markup = InlineKeyboardMarkup(btn)
