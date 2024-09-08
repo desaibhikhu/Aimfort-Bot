@@ -563,9 +563,9 @@ async def start(client, message):
             pass
         return await message.reply('No such file exist.')
     files = files_[0]
-    title = '@A2Zmoviesab  ' + ' '.join(filter(lambda x: not x.startswith('@'), files.caption.split()))
+    title = '@A2Zmoviesa  ' + ' '.join(filter(lambda x: not x.startswith('@'), files.caption.split()))
     size=get_size(files.file_size)
-    f_caption = '@A2Zmoviesab  ' + ' '.join(filter(lambda x: not x.startswith('@'), files.caption.split()))
+    f_caption = '@A2Zmoviesa  ' + ' '.join(filter(lambda x: not x.startswith('@'), files.caption.split()))
     if CUSTOM_FILE_CAPTION:
         try:
             f_caption=CUSTOM_FILE_CAPTION.format(file_name= '' if title is None else title, file_size='' if size is None else size, file_caption='' if f_caption is None else f_caption)
@@ -573,7 +573,7 @@ async def start(client, message):
             logger.exception(e)
             f_caption= '@A2Zmoviesab  ' + ' '.join(filter(lambda x: not x.startswith('@'), files.caption.split()))
     if f_caption is None:
-        f_caption = '@A2Zmoviesab  ' + ' '.join(filter(lambda x: not x.startswith('@'), files.caption.split()))
+        f_caption = '@A2Zmoviesa  ' + ' '.join(filter(lambda x: not x.startswith('@'), files.caption.split()))
     if not await db.has_premium_access(message.from_user.id):
         if not await check_verification(client, message.from_user.id) and VERIFY == True:
             btn = [[
